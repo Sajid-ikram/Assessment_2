@@ -8,7 +8,7 @@ class Home extends StatelessWidget {
     return const Scaffold(
       body: Center(
         child: Text(
-          "Starting from here...",
+          "Welcome Home...",
           style: TextStyle(fontSize: 20),
         ),
       ),
