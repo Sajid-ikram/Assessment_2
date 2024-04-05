@@ -1,10 +1,10 @@
-import 'package:assessment_2/view/auth/text_field.dart';
+import 'package:assessment_2/view/Auth/widgets/snackBar.dart';
+import 'package:assessment_2/view/Auth/widgets/text_field.dart';
 import 'package:assessment_2/view/utils/custom_loading.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import '../../Provider/authentication.dart';
 
 class Registration extends StatefulWidget {
