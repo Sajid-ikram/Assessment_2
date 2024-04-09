@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
+import 'add_sell_post_page.dart';
+
 class Home extends StatelessWidget {
   const Home({super.key});
 
@@ -37,8 +39,19 @@ class Home extends StatelessWidget {
                     );
                   },
                   icon: Icon(Icons.login)),
+
             ],
-          )
+          ),
+          IconButton(
+              onPressed: () async {
+
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => AddNewPostPage(),
+                  ),
+                );
+              },
+              icon: Icon(Icons.add)),
         ],
       ),
     );

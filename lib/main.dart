@@ -1,4 +1,6 @@
 import 'package:assessment_2/Provider/authentication.dart';
+import 'package:assessment_2/provider/post_provider.dart';
+import 'package:assessment_2/provider/profile_provider.dart';
 import 'package:assessment_2/view/auth/registration.dart';
 import 'package:assessment_2/view/auth/signin.dart';
 import 'package:assessment_2/view/home/home.dart';
@@ -30,6 +32,8 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => Authentication()),
+        ChangeNotifierProvider(create: (_) => PostProvider()),
+        ChangeNotifierProvider(create: (_) => ProfileProvider()),
       ],
       child: ScreenUtilInit(
         designSize: const Size(360, 800),
