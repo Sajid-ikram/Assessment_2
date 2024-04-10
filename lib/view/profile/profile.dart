@@ -7,6 +7,8 @@ import 'package:provider/provider.dart';
 import '../../../Provider/authentication.dart';
 import '../../holding_page.dart';
 import '../../provider/pro_provider.dart';
+import '../home/add_sell_post_page.dart';
+import 'my_post.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -100,7 +102,8 @@ Widget topWidget(Size size, BuildContext context) {
                           if (index == 0) {
 
                           } else if (index == 1) {
-
+                            Navigator.of(context).push(
+                                MaterialPageRoute(builder: (context) => MyPosts()));
                           } else if (index == 2) {
                             Provider.of<Authentication>(context, listen: false)
                                 .signOut();
