@@ -9,7 +9,7 @@ import 'package:http/http.dart' as http;
 
 import 'package:firebase_storage/firebase_storage.dart' as storage;
 import '../../provider/post_provider.dart';
-import '../../provider/profile_provider.dart';
+import '../../provider/pro_provider.dart';
 import '../Auth/registration.dart';
 import '../utils/custom_loading.dart';
 
@@ -62,6 +62,7 @@ class _AddNewPostPageState extends State<AddNewPostPage> {
           userName: pro.profileName,
           productName: productNameController.text,
           productDescription: productDescriptionController.text,
+          price: productPriceController.text,
           imageUrl: url,
           dateTime: DateTime.now().toString(),
           context: context);
@@ -109,6 +110,7 @@ class _AddNewPostPageState extends State<AddNewPostPage> {
 
   late TextEditingController productDescriptionController;
   late TextEditingController productNameController;
+  late TextEditingController productPriceController;
 
   @override
   void initState() {
@@ -117,9 +119,12 @@ class _AddNewPostPageState extends State<AddNewPostPage> {
           TextEditingController(text: widget.documentSnapshot!["postText"]);
       productDescriptionController =
           TextEditingController(text: widget.documentSnapshot!["productName"]);
+      productDescriptionController =
+          TextEditingController(text: widget.documentSnapshot!["price"]);
     } else {
       productDescriptionController = TextEditingController();
       productNameController = TextEditingController();
+      productPriceController = TextEditingController();
     }
     super.initState();
   }
@@ -168,6 +173,7 @@ class _AddNewPostPageState extends State<AddNewPostPage> {
                 ),
               ),
               buildTextField(productNameController, "Product Name"),
+              buildTextField(productPriceController, "Price"),
               buildTextField(productDescriptionController, "Description", maxLine: 6),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 32.h, vertical: 20.h),

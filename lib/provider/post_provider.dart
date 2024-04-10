@@ -1,4 +1,5 @@
-import 'package:assessment_2/provider/profile_provider.dart';
+
+import 'package:assessment_2/provider/pro_provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -15,44 +16,14 @@ class PostProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future addNewComment({
-    required String postId,
-    required String uid,
-    required String comment,
-    required String dateTime,
-    required BuildContext context,
-  }) async {
-    try {
-      loadingComment = true;
-      notifyListeners();
 
-      await FirebaseFirestore.instance
-          .collection('posts')
-          .doc(postId)
-          .collection("thoseWhoComment")
-          .doc()
-          .set({
-        "commentText": commentText,
-        "dateTime": dateTime,
-        "ownerUid": uid,
-      });
-
-      await FirebaseFirestore.instance.collection("posts").doc(postId).update(
-        {"comments": (int.parse(comment) + 1).toString()},
-      );
-
-      loadingComment = false;
-      notifyListeners();
-    } catch (e) {
-      return onError(context, "Having problem connecting to the server");
-    }
-  }
 
   Future addNewPost({
     required String userName,
     required String productName,
     required String productDescription,
     required String imageUrl,
+    required String price,
     required String dateTime,
     required BuildContext context,
   }) async {
@@ -65,6 +36,7 @@ class PostProvider with ChangeNotifier {
           "productDescription": productDescription,
           "imageUrl": imageUrl,
           "dateTime": dateTime,
+          "price": price,
           "ownerUid": FirebaseAuth.instance.currentUser!.uid,
         },
       );
@@ -115,85 +87,9 @@ class PostProvider with ChangeNotifier {
     }
   }
 
-  likeAPost({
-    required String postId,
-    required String uid,
-    required String likes,
-    required BuildContext context,
-  }) async {
-    try {
-      isLoading = true;
-      notifyListeners();
-      bool isExist = await isAlreadyLiked(uid: uid, postId: postId);
 
-      if (isExist) {
-        await FirebaseFirestore.instance
-            .collection('posts')
-            .doc(postId)
-            .collection("thoseWhoLike")
-            .doc(uid)
-            .delete();
 
-        await FirebaseFirestore.instance.collection("posts").doc(postId).update(
-          {"likes": (int.parse(likes) - 1).toString()},
-        );
-      } else {
-        await FirebaseFirestore.instance
-            .collection('posts')
-            .doc(postId)
-            .collection("thoseWhoLike")
-            .doc(uid)
-            .set({uid: "1"});
 
-        await FirebaseFirestore.instance.collection("posts").doc(postId).update(
-          {"likes": (int.parse(likes) + 1).toString()},
-        );
-      }
-
-      isLoading = false;
-      notifyListeners();
-    } catch (e) {
-      return onError(context, "Having problem connecting to the server");
-    }
-  }
-
-  Future<String> addToFavourite({
-    required String postId,
-    required String uid,
-    required bool isExist,
-    required BuildContext context,
-  }) async {
-    try {
-      isLoveLoading = true;
-      notifyListeners();
-
-      if (isExist) {
-        await FirebaseFirestore.instance
-            .collection('users')
-            .doc(uid)
-            .collection("favouritePosts")
-            .doc(postId)
-            .delete();
-
-        isLoveLoading = false;
-        notifyListeners();
-        return "Deleted";
-      } else {
-        await FirebaseFirestore.instance
-            .collection('users')
-            .doc(uid)
-            .collection("favouritePosts")
-            .doc(postId)
-            .set({uid: "1"});
-      }
-      isLoveLoading = false;
-      notifyListeners();
-      return "Added";
-    } catch (e) {
-      print(e);
-      return "Error";
-    }
-  }
 
   Future deletePost(String id) async {
     await FirebaseFirestore.instance.collection("posts").doc(id).delete();
