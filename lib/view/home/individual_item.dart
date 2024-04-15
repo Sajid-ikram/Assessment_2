@@ -1,4 +1,5 @@
 import 'package:assessment_2/provider/post_provider.dart';
+import 'package:assessment_2/view/home/product_detail_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,8 +10,12 @@ Widget productCard(
     QuerySnapshot<Object?> data, int index, BuildContext context) {
   return InkWell(
     onTap: () {
-      Navigator.pushNamed(context, "productDetailPage",
-          arguments: data.docs[index]);
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ProductDetailPage(data.docs[index]),
+        ),
+      );
     },
     splashColor: Colors.transparent,
     highlightColor: Colors.transparent,

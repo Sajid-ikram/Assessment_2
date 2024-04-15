@@ -1,5 +1,5 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
-import 'package:assessment_2/view/chat/chat.dart';
+import 'package:assessment_2/view/Chat/chat_view.dart';
 import 'package:assessment_2/view/profile/profile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +26,7 @@ class _CustomNavigationState extends State<CustomNavigation> {
 
   List<Widget> pages = [
     const Home(),
-    const Chat(),
+    const ChatView(),
     const Profile(),
   ];
 

@@ -1,3 +1,4 @@
+import 'package:assessment_2/custom_nevigation.dart';
 import 'package:assessment_2/view/Auth/widgets/flat_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +8,6 @@ import 'package:provider/provider.dart';
 import '../../Provider/authentication.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../home/home.dart';
 import '../utils/app_colors.dart';
 class Verification extends StatefulWidget {
   const Verification({
@@ -93,7 +93,7 @@ class _VerificationState extends State<Verification> {
             ),
           )
         : isVerified
-            ? const Home()
+            ? const CustomNavigation()
             : _buildScaffold();
   }
 

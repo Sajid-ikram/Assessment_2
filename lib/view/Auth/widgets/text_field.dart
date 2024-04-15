@@ -34,15 +34,15 @@ Center customTextField(TextEditingController controller, String text,
             return "Name should contain only character";
           }
         }
-        else if (text == "NHS email") {
-          if (value != null && !value.contains("@gmail.com")) {
-            snackBar(context, "You have to use a Gmail account");
-            return "You have to use a Gmail account";
+        /*else if (text == "UWL Email") {
+          if (value != null && !value.contains("uwl.ac.uk")) {
+            snackBar(context, "You have to use a UWL email");
+            return "You have to use a UWL email";
           } else if (value == null || value.isEmpty) {
             snackBar(context, "Field can not be empty!");
             return "Field can not be empty!";
           }
-        }
+        }*/
         else if (text == "Password" || text == "Confirm Password") {
           if (value == null || value.isEmpty) {
             snackBar(context, "Field can not be empty!");

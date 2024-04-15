@@ -1,10 +1,11 @@
 import 'package:assessment_2/Provider/authentication.dart';
+import 'package:assessment_2/provider/chat_provider.dart';
 import 'package:assessment_2/provider/post_provider.dart';
 import 'package:assessment_2/provider/pro_provider.dart';
 import 'package:assessment_2/view/auth/registration.dart';
 import 'package:assessment_2/view/auth/signin.dart';
 import 'package:assessment_2/view/home/home.dart';
-import 'package:assessment_2/view/home/productDetailPage.dart';
+import 'package:assessment_2/view/home/product_detail_page.dart';
 import 'package:assessment_2/view/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => ProfileProvider()),
         ChangeNotifierProvider(create: (_) => Authentication()),
         ChangeNotifierProvider(create: (_) => PostProvider()),
+        ChangeNotifierProvider(create: (_) => ChatProvider()),
 
       ],
       child: ScreenUtilInit(
@@ -48,7 +50,6 @@ class MyApp extends StatelessWidget {
               routes: {
                 "home": (ctx) => const Home(),
                 "Registration": (ctx) => const Registration(),
-                "productDetailPage": (ctx) => const ProductDetailPage(),
                 "SignIn": (ctx) => const SignIn(),
                 "HoldingPage": (ctx) => const HoldingPage(),
               });
